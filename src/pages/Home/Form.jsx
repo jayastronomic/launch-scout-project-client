@@ -2,6 +2,7 @@ import { React, useReducer } from "react";
 import DetailField from "./DetailField";
 import ItemField from "./ItemField";
 import { calculateTotal } from "../../helpers/calculateTotal";
+import { useNavigate } from "react-router-dom";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -42,45 +43,6 @@ function reducer(state, action) {
       updatedDetails[3].value = parseFloat(newTotal).toFixed(2).toString();
       console.log(updatedDetails[3].value);
       return { ...state, details: updatedDetails };
-    case "CLEAR_FORM":
-      const initial = {
-        details: [
-          {
-            label: "Retailer",
-            id: "retailer",
-            name: "retailer",
-            placeholder: "Retailer",
-            value: "",
-            type: "text",
-          },
-          {
-            label: "Purchase Date",
-            id: "purchaseDate",
-            name: "purchaseDate",
-            placeholder: "Purchase Date",
-            value: "",
-            type: "date",
-          },
-          {
-            label: "Purchase Time",
-            id: "purchaseTime",
-            name: "purchaseTime",
-            placeholder: "Purchase Time",
-            value: "",
-            type: "time",
-          },
-          {
-            label: "Total",
-            id: "total",
-            name: "total",
-            placeholder: "Total",
-            value: "0.00",
-            type: "number",
-          },
-        ],
-        items: [{ shortDescription: "", price: "" }],
-      };
-      return initial;
     default:
       return state;
   }
@@ -126,6 +88,7 @@ const initialState = {
 
 const Form = ({ setShowModal, setError }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
 
   const addItemField = () => {
     dispatch({
@@ -187,7 +150,9 @@ const Form = ({ setShowModal, setError }) => {
       .then((receiptData) => {
         if (receiptData.id) {
           setShowModal(true);
-          dispatch({ type: "CLEAR_FORM" });
+          setTimeout(() => {
+            navigate("/receipts");
+          }, 1000);
         } else {
           console.log(receiptData.errors);
           setShowModal(true);
