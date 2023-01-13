@@ -6,7 +6,7 @@ import { calculateTotal } from "../../helpers/calculateTotal";
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM_FIELD":
-      const newItemField = { short_description: "", price: "" };
+      const newItemField = { shortDescription: "", price: "" };
       return { ...state, items: [...state.items, newItemField] };
     case "HANDLE_CHANGE":
       const { key, index, name, value } = action.payload;
@@ -41,6 +41,45 @@ function reducer(state, action) {
       const updatedDetails = [...state.details];
       updatedDetails[3].value = newTotal.toString();
       return { ...state, details: updatedDetails };
+    case "CLEAR_FORM":
+      const initial = {
+        details: [
+          {
+            label: "Retailer",
+            id: "retailer",
+            name: "retailer",
+            placeholder: "Retailer",
+            value: "",
+            type: "text",
+          },
+          {
+            label: "Purchase Date",
+            id: "purchaseDate",
+            name: "purchaseDate",
+            placeholder: "Purchase Date",
+            value: "",
+            type: "date",
+          },
+          {
+            label: "Purchase Time",
+            id: "purchaseTime",
+            name: "purchaseTime",
+            placeholder: "Purchase Time",
+            value: "",
+            type: "time",
+          },
+          {
+            label: "Total",
+            id: "total",
+            name: "total",
+            placeholder: "Total",
+            value: "0.00",
+            type: "number",
+          },
+        ],
+        items: [{ shortDescription: "", price: "" }],
+      };
+      return initial;
     default:
       return state;
   }
@@ -81,7 +120,7 @@ const initialState = {
       type: "number",
     },
   ],
-  items: [{ short_description: "", price: "" }],
+  items: [{ shortDescription: "", price: "" }],
 };
 
 const Form = ({ setShowModal, setError }) => {
@@ -127,8 +166,8 @@ const Form = ({ setShowModal, setError }) => {
     const newReceipt = {
       receipt: {
         retailer: state.details[0].value,
-        purchase_date: state.details[1].value,
-        purchase_time: state.details[2].value,
+        purchaseDate: state.details[1].value,
+        purchaseTime: state.details[2].value,
         total: state.details[3].value,
         items: state.items,
       },
@@ -147,6 +186,7 @@ const Form = ({ setShowModal, setError }) => {
       .then((receiptData) => {
         if (receiptData.id) {
           setShowModal(true);
+          dispatch({ type: "CLEAR_FORM" });
         } else {
           setShowModal(true);
           setError(true);

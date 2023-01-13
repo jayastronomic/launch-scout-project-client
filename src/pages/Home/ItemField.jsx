@@ -34,7 +34,7 @@ const ItemField = ({
         <input
           id={"item" + (index + 1)}
           className={inputClass}
-          name="short_description"
+          name="shortDescription"
           placeholder="Name"
           value={state.shortDescription}
           onChange={(e) => handleChange(e, index, "items")}
