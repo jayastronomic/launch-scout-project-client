@@ -39,7 +39,8 @@ function reducer(state, action) {
       }
       const newTotal = calculateTotal(newValue, action.payload.index);
       const updatedDetails = [...state.details];
-      updatedDetails[3].value = newTotal.toString();
+      updatedDetails[3].value = parseFloat(newTotal).toFixed(2).toString();
+      console.log(updatedDetails[3].value);
       return { ...state, details: updatedDetails };
     case "CLEAR_FORM":
       const initial = {
@@ -188,6 +189,7 @@ const Form = ({ setShowModal, setError }) => {
           setShowModal(true);
           dispatch({ type: "CLEAR_FORM" });
         } else {
+          console.log(receiptData.errors);
           setShowModal(true);
           setError(true);
         }
