@@ -21,7 +21,7 @@ const Receipts = () => {
 
   const [receipts, setReceipts] = useState([]);
   return (
-    <main className="flex justify-center bg-[#300d38] py-8 px-4 flex-1">
+    <main className="flex justify-center bg-blue-400 py-8 px-4 flex-1">
       <section className="flex flex-col bg-white w-full max-w-[36rem] rounded-xl p-4 overflow-auto hidescrollbar max-h-[42rem]">
         <div className="flex justify-center w-full pb-8">
           <h2 className="font-bold text-xl self-center max-h-full border-b-2 border-black">

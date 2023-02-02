@@ -28,7 +28,7 @@ export const Breakdown = ({ points, breakdown }) => {
         </div>
 
         <div className="flex space-x-2 items-center">
-          <span className="font-bold fastup text-lg">FetchPoints: </span>
+          <span className="font-bold fastup text-lg">CoolPoints: </span>
           <span>{points}</span>
         </div>
       </div>

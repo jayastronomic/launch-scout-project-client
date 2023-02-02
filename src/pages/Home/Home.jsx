@@ -7,7 +7,7 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(false);
   return (
-    <main className="relative h-full flex flex-col items-center bg-[#300d38] pb-8 hidescrollbar overflow-auto">
+    <main className="relative h-full flex flex-col items-center bg-blue-400 pb-8 hidescrollbar overflow-auto">
       <div className="px-4">
         <Form setShowModal={setShowModal} setError={setError} />
       </div>

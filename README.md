@@ -1,6 +1,6 @@
-# BONUS Receipt Processor Front-end
+# Receipt Processor Front-end
 
-Hey Fetch Rewards Team! Welcome to Receipt Processor Frontend. This project was built with Docker and React and beuatifully styled with the TailwindCSS library. I styled it based on the of Fetch Rewards!
+Hey Launch Scout Team! Welcome to Receipt Processor Frontend. This project was built with Docker and React and beautifully styled with the TailwindCSS library.
 
 ## Getting Started
 
@@ -8,14 +8,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-There are no prequisites for thus project since Docker is installed on Fetch Rewards systems.
+The only prerequisite is to have Docker installed on your machine.
 
 ### Instatlling
 
 1. Clone the repository to your local machine using Git:
 
 ```
-git clone https://github.com/jayastronomic/fetch-frontend-bonus.git
+git clone https://github.com/jayastronomic/launch-scout-project-client
 ```
 
 2. Install the project dependencies by running the following command in the project's root directory:
@@ -32,13 +32,11 @@ This command will build the docker image and run the cointaner for this project.
 
 <img src="./src/assets/home.png" class="width: 12rem;"/>
 
-Here is a form for you to fill out to add receipt information. It takes all of the information and processes the points you get for each submission. To see the points you get for each receipt, click the link called "Processed Receipts". The link takes you to a page to see all of the receipt information that has been processed by the backend. You will alsosee the acquired points for each receipt based on the rules of the challenge:
+Here is a form for you to fill out to add receipt information. It takes all of the information and processes the points you get for each submission. To see the points you get for each receipt, click the link called "Processed Receipts". The link takes you to a page to see all of the receipt information that has been processed by the backend. You will also see the acquired points for each receipt based on the rules of the backend.
 
 [Receipt Information](./src/assets/info.png)
 
 <img src="./src/assets/info.png" class="width: 12rem;"/>
-
-Cool, right? I figured it'll be nice for you guys to see it in action in a more interactive way. I hope you guys enjoyed looking at my submission for this challenge and the bonus as well!
 
 ## Authors
 
