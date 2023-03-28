@@ -1,6 +1,6 @@
 # Receipt Processor Front-end
 
-Hey Launch Scout Team! Welcome to Receipt Processor Frontend. This project was built with Docker and React and beautifully styled with the TailwindCSS library.
+Welcome to Receipt Processor Frontend. This project was built with Docker and React and beautifully styled with the TailwindCSS library.
 
 ## Getting Started
 
