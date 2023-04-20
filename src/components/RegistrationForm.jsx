@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
 
 const RegistrationForm = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const RegistrationForm = () => {
     return <SignUpForm />;
   }
   if (location.pathname === "/login") {
-    return <p>Login Form</p>;
+    return <LoginForm />;
   }
 };
 
