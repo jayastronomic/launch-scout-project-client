@@ -31,7 +31,7 @@ const Receipt = ({
             <li>
               <div className="flex justify-between border-b py-1">
                 <div>1 x {item.short_description}</div>
-                <p>$ {parseFloat(item.price).toFixed(2)}</p>
+                <p>$ {item.price.toFixed(2)}</p>
               </div>
             </li>
           ))}
@@ -40,7 +40,7 @@ const Receipt = ({
       <div className="">
         <div className="flex justify-end space-x-2 pt-4">
           <span className="font-bold">Total: </span>
-          <span>$ {parseFloat(total).toFixed(2)}</span>
+          <span>$ {total.toFixed(2)}</span>
         </div>
       </div>
     </div>

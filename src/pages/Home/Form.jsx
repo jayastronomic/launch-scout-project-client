@@ -3,17 +3,21 @@ import DetailField from "./DetailField";
 import ItemField from "./ItemField";
 import { calculateTotal } from "../../helpers/calculateTotal";
 import { useNavigate } from "react-router-dom";
+import { createReceipt } from "../../network /Receipt";
 
 function reducer(state, action) {
   switch (action.type) {
+    case "CLEAR_FORM":
+      return { ...initialState };
     case "ADD_ITEM_FIELD":
-      const newItemField = { shortDescription: "", price: "" };
+      const newItemField = { short_description: "", price: "" };
       return { ...state, items: [...state.items, newItemField] };
     case "HANDLE_CHANGE":
       const { key, index, name, value } = action.payload;
       if (key === "items") {
         const items = [...state.items];
         items[index][name] = value;
+        console.log(items);
         return { ...state, items: items };
       }
       const details = [...state.details];
@@ -83,12 +87,18 @@ const initialState = {
       type: "number",
     },
   ],
-  items: [{ shortDescription: "", price: "" }],
+  items: [{ short_description: "", price: "" }],
 };
 
-const Form = ({ setShowModal, setError }) => {
+const Form = ({ setShowModal, setError, authUser }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
+
+  const clearForm = () => {
+    dispatch({
+      type: "CLEAR_FORM",
+    });
+  };
 
   const addItemField = () => {
     dispatch({
@@ -125,45 +135,34 @@ const Form = ({ setShowModal, setError }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newReceipt = {
       receipt: {
         retailer: state.details[0].value,
-        purchaseDate: state.details[1].value,
-        purchaseTime: state.details[2].value,
+        purchase_date: state.details[1].value,
+        purchase_time: state.details[2].value,
         total: state.details[3].value,
         items: state.items,
+        user_id: authUser.id,
       },
     };
 
-    const payload = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newReceipt),
-    };
-
-    fetch("http://localhost:4000/receipts/process", payload)
-      .then((resp) => resp.json())
-      .then((receiptData) => {
-        if (receiptData.id) {
+    await createReceipt(newReceipt)
+      .then((createdReceipt) => {
+        if (createdReceipt.condition == "created") {
           setShowModal(true);
+          clearForm();
           setTimeout(() => {
             navigate("/receipts");
           }, 1000);
         } else {
-          console.log(receiptData.errors);
+          console.log(createdReceipt.errors);
           setShowModal(true);
           setError(true);
         }
       })
-      .catch((err) => {
-        console.error(err);
-        setShowModal(true);
-        setError(true);
-      });
+      .catch((error) => console.log(error));
   };
 
   return (

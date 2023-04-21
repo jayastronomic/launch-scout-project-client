@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ setAuthUser }) => {
   const location = useLocation();
   if (location.pathname === "/signup") {
-    return <SignUpForm />;
+    return <SignUpForm setAuthUser={setAuthUser} />;
   }
   if (location.pathname === "/login") {
-    return <LoginForm />;
+    return <LoginForm setAuthUser={setAuthUser} />;
   }
 };
 

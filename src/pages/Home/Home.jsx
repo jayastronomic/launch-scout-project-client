@@ -3,13 +3,17 @@ import Form from "./Form";
 import Receipt from "../../icons/Receipt";
 import XReceipt from "../../icons/XReceipt";
 import Close from "../../icons/Close";
-const Home = () => {
+const Home = ({ authUser }) => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(false);
   return (
-    <main className="relative h-full flex flex-col items-center bg-blue-400 pb-8 hidescrollbar overflow-auto">
+    <main className="relative h-full flex flex-col items-center bg-[#004AAD] pb-8 hidescrollbar overflow-auto">
       <div className="px-4">
-        <Form setShowModal={setShowModal} setError={setError} />
+        <Form
+          setShowModal={setShowModal}
+          setError={setError}
+          authUser={authUser}
+        />
       </div>
       {showModal && (
         <button

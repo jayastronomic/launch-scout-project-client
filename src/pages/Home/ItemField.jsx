@@ -34,9 +34,9 @@ const ItemField = ({
         <input
           id={"item" + (index + 1)}
           className={inputClass}
-          name="shortDescription"
+          name="short_description"
           placeholder="Name"
-          value={state.shortDescription}
+          value={state.short_description}
           onChange={(e) => handleChange(e, index, "items")}
           onFocus={() => setItemFocus("border-blue-400 shadow-lg")}
           onBlur={() => setItemFocus("")}
